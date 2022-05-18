@@ -1,0 +1,378 @@
+name: 'panel Admin'
+description: ''
+endpoints:
+  -
+    httpMethods:
+      - POST
+    uri: api/admin/login
+    metadata:
+      title: 'Login Admin'
+      description: 'Login with phone and password'
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    queryParameters: []
+    bodyParameters:
+      phone:
+        name: phone
+        description: ''
+        required: true
+        example: 8
+        type: integer
+        custom: []
+      password:
+        name: password
+        description: ''
+        required: true
+        example: accusantium
+        type: string
+        custom: []
+    responses:
+      -
+        status: 200
+        content: 'token = "TOKEN_EXAMPLE"'
+        headers: []
+        description: '200, success'
+      -
+        status: 422
+        content: '{"message": "The selected phone is invalid.","errors": {"phone": ["The selected phone is invalid."]}}'
+        headers: []
+        description: '422, validation error'
+    responseFields: []
+  -
+    httpMethods:
+      - GET
+    uri: api/panel/admin
+    metadata:
+      title: 'Show All Admins'
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    queryParameters:
+      count:
+        name: count
+        description: ''
+        required: false
+        example: eaque
+        type: string
+        custom: []
+    bodyParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          [
+          {
+          "id": 1,
+          "image": "",
+          "name": "zzz",
+          "phone": "8129612721",
+          "role": "edit",
+          "country_id": 1
+          },
+          {
+          "id": 2,
+          "image": "",
+          "name": "zzz",
+          "phone": "0933333333",
+          "role": "edit",
+          "country_id": 1
+          }
+          ]
+        headers: []
+        description: '200, success'
+      -
+        status: 401
+        content: '{"message": "Unauthenticated."}'
+        headers: []
+        description: '401, Unauthenticated'
+      -
+        status: 403
+        content: '{"message": "Not Allowed."}'
+        headers: []
+        description: '403, not allowed'
+    responseFields: []
+  -
+    httpMethods:
+      - POST
+    uri: api/panel/admin
+    metadata:
+      title: 'create one admin'
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: multipart/form-data
+      Accept: application/json
+    urlParameters: []
+    queryParameters: []
+    bodyParameters:
+      phone:
+        name: phone
+        description: ''
+        required: true
+        example: 20
+        type: integer
+        custom: []
+      name:
+        name: name
+        description: ''
+        required: true
+        example: quidem
+        type: string
+        custom: []
+      role:
+        name: role
+        description: 'Must be one of <code>see</code>, <code>edit</code>, or <code>none</code>.'
+        required: true
+        example: edit
+        type: string
+        custom: []
+      password:
+        name: password
+        description: ''
+        required: true
+        example: adipisci
+        type: string
+        custom: []
+      image:
+        name: image
+        description: 'Must be an image.'
+        required: false
+        example: null
+        type: file
+        custom: []
+      country_id:
+        name: country_id
+        description: ''
+        required: true
+        example: 17
+        type: integer
+        custom: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+          "id": 1,
+          "image": "",
+          "name": "zzz",
+          "phone": "8129612721",
+          "role": "edit",
+          "country_id": 1
+          }
+        headers: []
+        description: '200, success'
+      -
+        status: 422
+        content: '{"message": "The selected phone is invalid.","errors": {"phone": ["The selected phone is invalid."]}}'
+        headers: []
+        description: '422, validation error'
+      -
+        status: 401
+        content: '{"message": "Unauthenticated."}'
+        headers: []
+        description: '401, Unauthenticated'
+      -
+        status: 403
+        content: '{"message": "Not Allowed."}'
+        headers: []
+        description: '403, not allowed'
+    responseFields: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/panel/admin/{id}'
+    metadata:
+      title: 'Show one admin'
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the admin.'
+        required: true
+        example: 20
+        type: integer
+        custom: []
+    queryParameters: []
+    bodyParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+          "id": 1,
+          "image": "",
+          "name": "zzz",
+          "phone": "8129612721",
+          "role": "edit",
+          "country_id": 1
+          }
+        headers: []
+        description: '200, success'
+      -
+        status: 404
+        content: '{"message": "Not Found!"}'
+        headers: []
+        description: '404, not found'
+      -
+        status: 401
+        content: '{"message": "Unauthenticated."}'
+        headers: []
+        description: '401, Unauthenticated'
+      -
+        status: 403
+        content: '{"message": "Not Allowed."}'
+        headers: []
+        description: '403, not allowed'
+    responseFields: []
+  -
+    httpMethods:
+      - PUT
+      - PATCH
+    uri: 'api/panel/admin/{id}'
+    metadata:
+      title: 'Edit Admin'
+      description: 'This endpoint Edits one admin'
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: multipart/form-data
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the admin.'
+        required: true
+        example: 2
+        type: integer
+        custom: []
+    queryParameters: []
+    bodyParameters:
+      phone:
+        name: phone
+        description: ''
+        required: false
+        example: null
+        type: string
+        custom: []
+      name:
+        name: name
+        description: ''
+        required: false
+        example: null
+        type: string
+        custom: []
+      role:
+        name: role
+        description: 'Must be one of <code>see</code>, <code>edit</code>, or <code>none</code>.'
+        required: false
+        example: edit
+        type: string
+        custom: []
+      image:
+        name: image
+        description: 'Must be an image.'
+        required: false
+        example: null
+        type: file
+        custom: []
+      country_id:
+        name: country_id
+        description: ''
+        required: false
+        example: 15
+        type: integer
+        custom: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+          "id": 1,
+          "image": "",
+          "name": "zzz",
+          "phone": "8129612721",
+          "role": "edit",
+          "country_id": 1
+          }
+        headers: []
+        description: '200, success'
+      -
+        status: 422
+        content: '{"message": "The selected phone is invalid.","errors": {"phone": ["The selected phone is invalid."]}}'
+        headers: []
+        description: '422, validation error'
+      -
+        status: 401
+        content: '{"message": "Unauthenticated."}'
+        headers: []
+        description: '401, Unauthenticated'
+      -
+        status: 403
+        content: '{"message": "Not Allowed."}'
+        headers: []
+        description: '403, not allowed'
+    responseFields: []
+  -
+    httpMethods:
+      - DELETE
+    uri: 'api/panel/admin/{id}'
+    metadata:
+      title: 'Delete Admin'
+      description: |-
+        This endpoint Deletes one admin
+        <aside class="success">Send admin's id</aside>
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the admin.'
+        required: true
+        example: 4
+        type: integer
+        custom: []
+    queryParameters: []
+    bodyParameters: []
+    responses:
+      -
+        status: 200
+        content: '{"message" : "admin deleted successfully"}'
+        headers: []
+        description: '200, success'
+      -
+        status: 401
+        content: '{"message": "Unauthenticated."}'
+        headers: []
+        description: '401, Unauthenticated'
+      -
+        status: 403
+        content: '{"message": "Not Allowed."}'
+        headers: []
+        description: '403, not allowed'
+      -
+        status: 404
+        content: '{"message": "Not Found!"}'
+        headers: []
+        description: '404, not found'
+    responseFields: []

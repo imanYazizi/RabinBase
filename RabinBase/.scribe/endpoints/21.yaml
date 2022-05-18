@@ -1,0 +1,80 @@
+name: Verify
+description: |-
+
+  APIs for Verification
+endpoints:
+  -
+    httpMethods:
+      - GET
+    uri: 'api/verify_email/{code}'
+    metadata:
+      title: 'Verify email'
+      description: 'Verify email'
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      code:
+        name: code
+        description: ''
+        required: true
+        example: magni
+        type: string
+        custom: []
+    queryParameters: []
+    bodyParameters: []
+    responses:
+      -
+        status: 200
+        content: 'email verified successfully'
+        headers: []
+        description: '200, success'
+      -
+        status: 400
+        content: 'The code is not correct'
+        headers: []
+        description: '400, Not Correct'
+    responseFields: []
+  -
+    httpMethods:
+      - POST
+    uri: api/verify_phone
+    metadata:
+      title: 'Verify Phone'
+      description: 'Verify phone'
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    queryParameters: []
+    bodyParameters:
+      phone:
+        name: phone
+        description: ''
+        required: true
+        example: 11
+        type: integer
+        custom: []
+      code:
+        name: code
+        description: ''
+        required: true
+        example: rem
+        type: string
+        custom: []
+    responses:
+      -
+        status: 200
+        content: 'phone verified successfully'
+        headers: []
+        description: '200, success'
+      -
+        status: 400
+        content: 'The code is not correct'
+        headers: []
+        description: '400, Not Correct'
+    responseFields: []

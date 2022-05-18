@@ -1,0 +1,247 @@
+name: Landing
+description: ''
+endpoints:
+  -
+    httpMethods:
+      - GET
+    uri: api/panel/landing
+    metadata:
+      title: 'Show All landings'
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    queryParameters: []
+    bodyParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          [{
+          "id": 3,
+          "type": "text",
+          "key": "about_title",
+          "value": "about us"
+          } , {
+          "id": 4,
+          "type": "text",
+          "key": "about_title",
+          "value": "about us"
+          }]
+        headers: []
+        description: '200, success'
+    responseFields: []
+  -
+    httpMethods:
+      - POST
+    uri: api/panel/landing
+    metadata:
+      title: 'create one landing'
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    queryParameters: []
+    bodyParameters:
+      content_id:
+        name: content_id
+        description: ''
+        required: false
+        example: null
+        type: string
+        custom: []
+      key:
+        name: key
+        description: ''
+        required: true
+        example: ex
+        type: string
+        custom: []
+      type:
+        name: type
+        description: 'Must be one of <code>image</code> or <code>text</code>.'
+        required: true
+        example: text
+        type: string
+        custom: []
+      value:
+        name: value
+        description: ''
+        required: true
+        example: minima
+        type: string
+        custom: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+          "id": 3,
+          "type": "text",
+          "key": "about_title",
+          "value": "about us"
+          }
+        headers: []
+        description: '200, success'
+      -
+        status: 401
+        content: '{"message": "Unauthenticated."}'
+        headers: []
+        description: '401, Unauthenticated'
+      -
+        status: 403
+        content: '{"message": "Not Allowed."}'
+        headers: []
+        description: '403, not allowed'
+    responseFields: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/panel/landing/{id}'
+    metadata:
+      title: 'show one landing'
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the landing.'
+        required: true
+        example: 1
+        type: integer
+        custom: []
+    queryParameters: []
+    bodyParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+          "id": 3,
+          "type": "text",
+          "key": "about_title",
+          "value": "about us"
+          }
+        headers: []
+        description: '200, success'
+      -
+        status: 404
+        content: '{"message": "Not Found!"}'
+        headers: []
+        description: '404, not found'
+      -
+        status: 401
+        content: '{"message": "Unauthenticated."}'
+        headers: []
+        description: '401, Unauthenticated'
+      -
+        status: 403
+        content: '{"message": "Not Allowed."}'
+        headers: []
+        description: '403, not allowed'
+    responseFields: []
+  -
+    httpMethods:
+      - PUT
+      - PATCH
+    uri: 'api/panel/landing/{id}'
+    metadata:
+      title: 'edit one landing'
+      description: |-
+        @response scenario=success
+        {
+        "id": 3,
+        "type": "text",
+        "key": "about_title",
+        "value": "about us"
+        }
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the landing.'
+        required: true
+        example: 13
+        type: integer
+        custom: []
+    queryParameters: []
+    bodyParameters:
+      key:
+        name: key
+        description: ''
+        required: false
+        example: null
+        type: string
+        custom: []
+      value:
+        name: value
+        description: ''
+        required: false
+        example: null
+        type: string
+        custom: []
+    responses:
+      -
+        status: 404
+        content: '{"message": "Not Found!"}'
+        headers: []
+        description: '404, not found'
+      -
+        status: 401
+        content: '{"message": "Unauthenticated."}'
+        headers: []
+        description: '401, Unauthenticated'
+      -
+        status: 403
+        content: '{"message": "Not Allowed."}'
+        headers: []
+        description: '403, not allowed'
+    responseFields: []
+  -
+    httpMethods:
+      - DELETE
+    uri: 'api/panel/landing/{id}'
+    metadata:
+      title: 'delete one landing'
+      description: '@response scenario=success {"message" : "landing deleted successfully"}'
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the landing.'
+        required: true
+        example: 10
+        type: integer
+        custom: []
+    queryParameters: []
+    bodyParameters: []
+    responses:
+      -
+        status: 404
+        content: '{"message": "Not Found!"}'
+        headers: []
+        description: '404, not found'
+    responseFields: []

@@ -1,0 +1,341 @@
+name: 'Panel Users'
+description: ''
+endpoints:
+  -
+    httpMethods:
+      - GET
+    uri: api/panel/client
+    metadata:
+      title: 'Show All Users'
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    queryParameters:
+      count:
+        name: count
+        description: ''
+        required: false
+        example: non
+        type: string
+        custom: []
+    bodyParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          [{
+          "id": 2,
+          "image": "",
+          "name": "zeinab",
+          "phone": "9129612721",
+          "email": "zeinab@gmail.com",
+          "orders": []
+          },
+          {
+          "id": 3,
+          "image": "",
+          "name": "zeinab",
+          "phone": "9129612722",
+          "email": "yari@gmail.com",
+          "orders": []
+          }]
+        headers: []
+        description: '200, success'
+      -
+        status: 401
+        content: '{"message": "Unauthenticated."}'
+        headers: []
+        description: '401, Unauthenticated'
+      -
+        status: 403
+        content: '{"message": "Not Allowed."}'
+        headers: []
+        description: '403, not allowed'
+    responseFields: []
+  -
+    httpMethods:
+      - POST
+    uri: api/panel/client
+    metadata:
+      title: 'Create User'
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: multipart/form-data
+      Accept: application/json
+    urlParameters: []
+    queryParameters: []
+    bodyParameters:
+      name:
+        name: name
+        description: ''
+        required: true
+        example: voluptatem
+        type: string
+        custom: []
+      phone:
+        name: phone
+        description: 'This field is required when none of <code>email</code> are present.'
+        required: false
+        example: 14
+        type: integer
+        custom: []
+      email:
+        name: email
+        description: 'This field is required when none of <code>phone</code> are present.  Must be a valid email address.'
+        required: false
+        example: eabbott@example.com
+        type: string
+        custom: []
+      image:
+        name: image
+        description: 'Must be an image.'
+        required: false
+        example: null
+        type: file
+        custom: []
+      country_id:
+        name: country_id
+        description: ''
+        required: true
+        example: 15
+        type: integer
+        custom: []
+      password:
+        name: password
+        description: 'Must be at least 8 characters.'
+        required: true
+        example: wjq
+        type: string
+        custom: []
+      re_try_Password:
+        name: re_try_Password
+        description: 'The value and <code>password</code> must match.'
+        required: true
+        example: quae
+        type: string
+        custom: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+          "id": 2,
+          "image": "",
+          "name": "zeinab",
+          "phone": "9129612721",
+          "email": "zeinab@gmail.com",
+          "orders": []
+          }
+        headers: []
+        description: '200, success'
+      -
+        status: 401
+        content: '{"message": "Unauthenticated."}'
+        headers: []
+        description: '401, Unauthenticated'
+      -
+        status: 403
+        content: '{"message": "Not Allowed."}'
+        headers: []
+        description: '403, not allowed'
+      -
+        status: 422
+        content: '{"message": "The selected country id is invalid. (and 2 more errors)","errors": {"country_id": ["The selected country id is invalid."],"password": ["The password must be at least 8."],"re_try_Password": ["The re try  password and password must match."]}}'
+        headers: []
+        description: '422, validation error'
+    responseFields: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/panel/client/{id}'
+    metadata:
+      title: 'Show one user'
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the client.'
+        required: true
+        example: 9
+        type: integer
+        custom: []
+    queryParameters: []
+    bodyParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+          "id": 2,
+          "image": "",
+          "name": "zeinab",
+          "phone": "9129612721",
+          "email": "zeinab@gmail.com",
+          "orders": []
+          }
+        headers: []
+        description: '200, success'
+      -
+        status: 404
+        content: '{"message": "Not Found!"}'
+        headers: []
+        description: '404, not found'
+      -
+        status: 401
+        content: '{"message": "Unauthenticated."}'
+        headers: []
+        description: '401, Unauthenticated'
+      -
+        status: 403
+        content: '{"message": "Not Allowed."}'
+        headers: []
+        description: '403, not allowed'
+    responseFields: []
+  -
+    httpMethods:
+      - PUT
+      - PATCH
+    uri: 'api/panel/client/{id}'
+    metadata:
+      title: 'Edit User'
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: multipart/form-data
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the client.'
+        required: true
+        example: 12
+        type: integer
+        custom: []
+    queryParameters: []
+    bodyParameters:
+      name:
+        name: name
+        description: ''
+        required: false
+        example: null
+        type: string
+        custom: []
+      phone:
+        name: phone
+        description: ''
+        required: false
+        example: 3
+        type: integer
+        custom: []
+      email:
+        name: email
+        description: 'Must be a valid email address.'
+        required: false
+        example: shanny.hartmann@example.net
+        type: string
+        custom: []
+      image:
+        name: image
+        description: 'Must be an image.'
+        required: false
+        example: null
+        type: file
+        custom: []
+      country_id:
+        name: country_id
+        description: ''
+        required: false
+        example: 2
+        type: integer
+        custom: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+          "id": 2,
+          "image": "",
+          "name": "zeinab",
+          "phone": "9129612721",
+          "email": "zeinab@gmail.com",
+          "orders": []
+          }
+        headers: []
+        description: '200, success'
+      -
+        status: 401
+        content: '{"message": "Unauthenticated."}'
+        headers: []
+        description: '401, Unauthenticated'
+      -
+        status: 403
+        content: '{"message": "Not Allowed."}'
+        headers: []
+        description: '403, not allowed'
+      -
+        status: 422
+        content: '{"message": "The selected country id is invalid. (and 2 more errors)","errors": {"country_id": ["The selected country id is invalid."],"password": ["The password must be at least 8."],"re_try_Password": ["The re try  password and password must match."]}}'
+        headers: []
+        description: '422, validation error'
+    responseFields: []
+  -
+    httpMethods:
+      - DELETE
+    uri: 'api/panel/client/{id}'
+    metadata:
+      title: 'Delete one user'
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the client.'
+        required: true
+        example: 6
+        type: integer
+        custom: []
+    queryParameters: []
+    bodyParameters: []
+    responses:
+      -
+        status: 200
+        content: '{"message" : "user deleted successfully"}'
+        headers: []
+        description: '200, success'
+      -
+        status: 401
+        content: '{"message": "Unauthenticated."}'
+        headers: []
+        description: '401, Unauthenticated'
+      -
+        status: 403
+        content: '{"message": "Not Allowed."}'
+        headers: []
+        description: '403, not allowed'
+      -
+        status: 404
+        content: '{"message": "Not Found!"}'
+        headers: []
+        description: '404, not found'
+    responseFields: []

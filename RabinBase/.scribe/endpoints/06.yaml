@@ -1,0 +1,169 @@
+name: Order
+description: |-
+
+  APIs for Orders
+endpoints:
+  -
+    httpMethods:
+      - GET
+    uri: api/active_order
+    metadata:
+      title: Cart
+      description: 'This endpoint shows active order'
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    queryParameters: []
+    bodyParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+          "id": 2,
+          "client_id": 1,
+          "is_pay": false,
+          "total_price": 0,
+          "status": null,
+          "address": {
+          "id": 1,
+          "client_id": 1,
+          "title": "l;kjh",
+          "address": ";klj",
+          "lat_lng": ""
+          },
+          "carts": []
+          }
+        headers: []
+        description: '200, success'
+    responseFields: []
+  -
+    httpMethods:
+      - GET
+    uri: api/order
+    metadata:
+      title: 'Order History'
+      description: 'This endpoint shows all orders'
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    queryParameters: []
+    bodyParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          [
+          {
+          "id": 1,
+          "client_id": 1,
+          "is_pay": false,
+          "total_price": 60,
+          "status": 'sent',
+          "address": {
+          "id": 1,
+          "client_id": 1,
+          "title": "home",
+          "address": "canada",
+          "lat_lng": ""
+          },
+          "carts": [
+          {
+          "id": 1,
+          "item_id": {
+          "id": 2,
+          "item_category_id": 1,
+          "image": "mknjbh",
+          "available": 1,
+          "name": "peperoni",
+          "price": "5",
+          "description": ";.'lkjihugjhg",
+          "created_at": null,
+          "updated_at": null,
+          "deleted_at": null
+          },
+          "is_menu": true,
+          "count": 6,
+          "amount": 30
+          },
+          {
+          "id": 2,
+          "item_id": {
+          "id": 3,
+          "item_category_id": 2,
+          "image": "AS",
+          "available": 1,
+          "name": "QWE",
+          "price": "6",
+          "description": "QWE",
+          "created_at": null,
+          "updated_at": null,
+          "deleted_at": null
+          },
+          "is_menu": true,
+          "count": 5,
+          "amount": 30
+          }
+          ]
+          },
+        headers: []
+        description: '200, success'
+      -
+        status: 401
+        content: '{"message": "Unauthenticated."}'
+        headers: []
+        description: '401, Unauthenticated'
+    responseFields: []
+  -
+    httpMethods:
+      - POST
+    uri: api/order
+    metadata:
+      title: 'Add address to cart'
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    queryParameters: []
+    bodyParameters:
+      address_id:
+        name: address_id
+        description: ''
+        required: true
+        example: est
+        type: string
+        custom: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+          "id": 2,
+          "client_id": 1,
+          "is_pay": false,
+          "total_price": 0,
+          "status": null,
+          "address": {
+          "id": 1,
+          "client_id": 1,
+          "title": "l;kjh",
+          "address": ";klj",
+          "lat_lng": ""
+          },
+          "carts": []
+          }
+        headers: []
+        description: '200, success'
+    responseFields: []

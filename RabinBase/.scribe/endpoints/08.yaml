@@ -1,0 +1,255 @@
+name: 'Panel Content'
+description: ''
+endpoints:
+  -
+    httpMethods:
+      - GET
+    uri: api/panel/content
+    metadata:
+      title: 'Show all content'
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    queryParameters: []
+    bodyParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          [
+          {
+          "id": 1,
+          "title": "about us",
+          "description": "hello , this is our website"
+          },
+          {
+          "id": 2,
+          "title": "about us",
+          "description": "hello , this is our website"
+          }
+          ]
+        headers: []
+        description: '200, success'
+      -
+        status: 401
+        content: '{"message": "Unauthenticated."}'
+        headers: []
+        description: '401, Unauthenticated'
+      -
+        status: 403
+        content: '{"message": "Not Allowed."}'
+        headers: []
+        description: '403, not allowed'
+    responseFields: []
+  -
+    httpMethods:
+      - POST
+    uri: api/panel/content
+    metadata:
+      title: 'create one content'
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    queryParameters: []
+    bodyParameters:
+      title:
+        name: title
+        description: ''
+        required: true
+        example: dolor
+        type: string
+        custom: []
+      description:
+        name: description
+        description: ''
+        required: true
+        example: libero
+        type: string
+        custom: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+          "id": 2,
+          "title": "about us",
+          "description": "hello , this is our website"
+          }
+        headers: []
+        description: '200, success'
+      -
+        status: 401
+        content: '{"message": "Unauthenticated."}'
+        headers: []
+        description: '401, Unauthenticated'
+      -
+        status: 403
+        content: '{"message": "Not Allowed."}'
+        headers: []
+        description: '403, not allowed'
+    responseFields: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/panel/content/{id}'
+    metadata:
+      title: 'Show one content'
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the content.'
+        required: true
+        example: 12
+        type: integer
+        custom: []
+    queryParameters: []
+    bodyParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+          "id": 2,
+          "title": "about us",
+          "description": "hello , this is our website"
+          }
+        headers: []
+        description: '200, success'
+      -
+        status: 422
+        content: '{"message": "The selected title is invalid.","errors": {"phone": ["The selected title is invalid."]}}'
+        headers: []
+        description: '422, validation error'
+      -
+        status: 401
+        content: '{"message": "Unauthenticated."}'
+        headers: []
+        description: '401, Unauthenticated'
+      -
+        status: 403
+        content: '{"message": "Not Allowed."}'
+        headers: []
+        description: '403, not allowed'
+    responseFields: []
+  -
+    httpMethods:
+      - PUT
+      - PATCH
+    uri: 'api/panel/content/{id}'
+    metadata:
+      title: 'edit one content'
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the content.'
+        required: true
+        example: 5
+        type: integer
+        custom: []
+    queryParameters: []
+    bodyParameters:
+      title:
+        name: title
+        description: ''
+        required: false
+        example: null
+        type: string
+        custom: []
+      description:
+        name: description
+        description: ''
+        required: false
+        example: null
+        type: string
+        custom: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+          "id": 2,
+          "title": "about us",
+          "description": "hello , this is our website"
+          }
+        headers: []
+        description: '200, success'
+      -
+        status: 422
+        content: '{"message": "The selected title is invalid.","errors": {"phone": ["The selected title is invalid."]}}'
+        headers: []
+        description: '422, validation error'
+      -
+        status: 401
+        content: '{"message": "Unauthenticated."}'
+        headers: []
+        description: '401, Unauthenticated'
+      -
+        status: 403
+        content: '{"message": "Not Allowed."}'
+        headers: []
+        description: '403, not allowed'
+    responseFields: []
+  -
+    httpMethods:
+      - DELETE
+    uri: 'api/panel/content/{id}'
+    metadata:
+      title: 'delete one content'
+      description: '@response scenario=success {"message" : "content deleted successfully"}'
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the content.'
+        required: true
+        example: 19
+        type: integer
+        custom: []
+    queryParameters: []
+    bodyParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message": "Unauthenticated."}'
+        headers: []
+        description: '401, Unauthenticated'
+      -
+        status: 403
+        content: '{"message": "Not Allowed."}'
+        headers: []
+        description: '403, not allowed'
+      -
+        status: 404
+        content: '{"message": "Not Found!"}'
+        headers: []
+        description: '404, not found'
+    responseFields: []

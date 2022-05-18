@@ -1,0 +1,98 @@
+name: 'panel Sell'
+description: ''
+endpoints:
+  -
+    httpMethods:
+      - GET
+    uri: api/panel/sell
+    metadata:
+      title: Sell
+      description: 'show sell records'
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    queryParameters: []
+    bodyParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+          "day_of_week_number": [
+          {
+          "Saturday": {
+          "sells": 1
+          }
+          },
+          {
+          "Thursday": {
+          "sells": 2
+          }
+          }
+          ],
+          "most_sell_of_week": {
+          "amount": 225,
+          "day": "Saturday"
+          },
+          "least_sell_of_week": {
+          "amount": 30,
+          "day": "Thursday"
+          },
+          "most_item_sell": {
+          "item": {
+          "id": 1,
+          "category": "pizza",
+          "image": "http://127.0.0.1:8000/storage/",
+          "available": true,
+          "name": "peperroni",
+          "price": "25",
+          "description": "so good"
+          },
+          "count": 9
+          },
+          "least_item_sell": {
+          "item": {
+          "id": 2,
+          "category": "pizza",
+          "image": "http://127.0.0.1:8000/storage/",
+          "available": true,
+          "name": "sesar",
+          "price": "5",
+          "description": "very bad"
+          },
+          "count": 6
+          },
+          "most_3_item_sell": [
+          {
+          "item": {
+          "id": 1,
+          "category": "pizza",
+          "image": "http://127.0.0.1:8000/storage/",
+          "available": true,
+          "name": "peperroni",
+          "price": "25",
+          "description": "so good"
+          },
+          "count": 9
+          },
+          {
+          "item": {
+          "id": 2,
+          "category": "pizza",
+          "image": "http://127.0.0.1:8000/storage/",
+          "available": true,
+          "name": "sesar",
+          "price": "5",
+          "description": "very bad"
+          },
+          "count": 6
+          }
+          ]
+          }
+        headers: []
+        description: '200, success'
+    responseFields: []

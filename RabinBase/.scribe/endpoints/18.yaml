@@ -1,0 +1,261 @@
+name: 'Pizza (selfmade)'
+description: |-
+
+  APIs for create selfmade pizza
+endpoints:
+  -
+    httpMethods:
+      - GET
+    uri: api/pizza
+    metadata:
+      title: 'Show All pizzas'
+      description: 'This endpoint shows all selfmade pizzas of login user'
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    queryParameters: []
+    bodyParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          [
+          {
+          "id": 1,
+          "name": "soluta",
+          "price": "5",
+          "selfmades": [
+          {
+          "id": 1,
+          "category": "topping",
+          "image": "http://127.0.0.1:8000/storage/files/1649269045-111627720.png",
+          "name": "oninon",
+          "price": "17",
+          "amount_1x": "2",
+          "amount_2x": "13",
+          "amount_3x": "3"
+          },
+          {
+          "id": 2,
+          "category": "topping",
+          "image": "http://127.0.0.1:8000/storage/files/1649269072-916395255.png",
+          "name": "oninon",
+          "price": "17",
+          "amount_1x": "2",
+          "amount_2x": "13",
+          "amount_3x": "3"
+          }
+          ]
+          }
+          ]
+        headers: []
+        description: '200, success'
+      -
+        status: 401
+        content: '{"message": "Unauthenticated."}'
+        headers: []
+        description: '401, Unauthenticated'
+    responseFields: []
+  -
+    httpMethods:
+      - POST
+    uri: api/pizza
+    metadata:
+      title: 'Create selfmade pizza'
+      description: |-
+        Use this when user makes a selfmade pizza
+        <aside class="success">Send id of selfmade's items in array</aside>
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: multipart/form-data
+      Accept: application/json
+    urlParameters: []
+    queryParameters: []
+    bodyParameters:
+      image:
+        name: image
+        description: 'Must be an image.'
+        required: false
+        example: null
+        type: file
+        custom: []
+      name:
+        name: name
+        description: ''
+        required: true
+        example: accusamus
+        type: string
+        custom: []
+      selfmades:
+        name: selfmades
+        description: ''
+        required: true
+        example:
+          - iusto
+        type: 'string[]'
+        custom: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+          "id": 2,
+          "name": "exercitationem",
+          "price": 4,
+          "selfmades": [
+          {
+          "id": 1,
+          "category": "topping",
+          "image": "http://127.0.0.1:8000/storage/files/1649269045-111627720.png",
+          "name": "oninon",
+          "price": "17",
+          "amount_1x": "2",
+          "amount_2x": "13",
+          "amount_3x": "3"
+          },
+          {
+          "id": 2,
+          "category": "topping",
+          "image": "http://127.0.0.1:8000/storage/files/1649269072-916395255.png",
+          "name": "oninon",
+          "price": "17",
+          "amount_1x": "2",
+          "amount_2x": "13",
+          "amount_3x": "3"
+          }
+          ]
+          }
+        headers: []
+        description: '200, success'
+      -
+        status: 401
+        content: |-
+          {"message": "Unauthenticated."}
+
+          * @response status=422 scenario="validation error"
+          {
+          "message": "The selfmades field is required.",
+          "errors": {
+          "selfmades": [
+          "The selfmades field is required."
+          ]
+          }
+          }
+        headers: []
+        description: '401, Unauthenticated'
+    responseFields: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/pizza/{id}'
+    metadata:
+      title: 'Show One selfmade pizza'
+      description: 'This endpoint shows One selfmade pizza'
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the pizza.'
+        required: true
+        example: 17
+        type: integer
+        custom: []
+    queryParameters: []
+    bodyParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          [
+          {
+          "id": 1,
+          "name": "soluta",
+          "price": "5",
+          "selfmades": [
+          {
+          "id": 1,
+          "category": "topping",
+          "image": "http://127.0.0.1:8000/storage/files/1649269045-111627720.png",
+          "name": "oninon",
+          "price": "17",
+          "amount_1x": "2",
+          "amount_2x": "13",
+          "amount_3x": "3"
+          },
+          {
+          "id": 2,
+          "category": "topping",
+          "image": "http://127.0.0.1:8000/storage/files/1649269072-916395255.png",
+          "name": "oninon",
+          "price": "17",
+          "amount_1x": "2",
+          "amount_2x": "13",
+          "amount_3x": "3"
+          }
+          ]
+          }
+          ]
+        headers: []
+        description: '200, success'
+      -
+        status: 401
+        content: '{"message": "Unauthenticated."}'
+        headers: []
+        description: '401, Unauthenticated'
+      -
+        status: 404
+        content: '{"message": "Not Found!"}'
+        headers: []
+        description: '404, not found'
+    responseFields: []
+  -
+    httpMethods:
+      - DELETE
+    uri: 'api/pizza/{id}'
+    metadata:
+      title: 'Delete One selfmade pizza'
+      description: 'This endpoint deletes One selfmade pizza'
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the pizza.'
+        required: true
+        example: 10
+        type: integer
+        custom: []
+    queryParameters: []
+    bodyParameters: []
+    responses:
+      -
+        status: 200
+        content: '{"message" : "pizza deleted successfully"}'
+        headers: []
+        description: '200, success'
+      -
+        status: 401
+        content: '{"message": "Unauthenticated."}'
+        headers: []
+        description: '401, Unauthenticated'
+      -
+        status: 404
+        content: '{"message": "Not Found!"}'
+        headers: []
+        description: '404, not found'
+    responseFields: []

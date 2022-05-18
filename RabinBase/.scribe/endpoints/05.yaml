@@ -1,0 +1,143 @@
+name: 'Menu category'
+description: |-
+
+  APIs for Menu's category
+endpoints:
+  -
+    httpMethods:
+      - GET
+    uri: api/menu_category
+    metadata:
+      title: 'Show All Menu''s Category'
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    queryParameters: []
+    bodyParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          [
+          {
+          "id": 1,
+          "image": "http://127.0.0.1:8000/storage/image.png",
+          "name": "pizza"
+          },
+          {
+          "id": 2,
+          "image": "http://127.0.0.1:8000/storage/jlhv",
+          "name": "hamburger"
+          }
+          ]
+        headers: []
+        description: '200, success'
+      -
+        status: 401
+        content: '{"message": "Unauthenticated."}'
+        headers: []
+        description: '401, Unauthenticated'
+      -
+        status: 403
+        content: '{"message": "Not Allowed."}'
+        headers: []
+        description: '403, not allowed'
+    responseFields: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/menu_category/{id}'
+    metadata:
+      title: 'Show foods of a category in the menu'
+      description: |-
+        This endpoint sends you foods of the specific category.
+        <aside class="success">Send me category id.</aside>
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the menu category.'
+        required: true
+        example: consequatur
+        type: string
+        custom: []
+    queryParameters: []
+    bodyParameters: []
+    responses:
+      -
+        status: 200
+        content: ''
+        headers: []
+        description: '200, success'
+      -
+        status: 200
+        content: |-
+          {
+          "pizza": [
+          {
+          "id": 2,
+          "item_category_id": 1,
+          "image": "",
+          "available": 1,
+          "name": "peperoni",
+          "price": "5",
+          "description": "good",
+          "created_at": null,
+          "updated_at": null,
+          "deleted_at": null,
+          "category": {
+          "id": 1,
+          "image": "",
+          "name": "pizza",
+          "created_at": null,
+          "updated_at": null,
+          "deleted_at": null
+          }
+          }
+          ],
+          "hamburger": [
+          {
+          "id": 3,
+          "item_category_id": 2,
+          "image": "",
+          "available": 1,
+          "name": "peperoni",
+          "price": "6",
+          "description": "bad",
+          "created_at": null,
+          "updated_at": null,
+          "deleted_at": null,
+          "category": {
+          "id": 2,
+          "image": "",
+          "name": "hamburger",
+          "created_at": null,
+          "updated_at": null,
+          "deleted_at": null
+          }
+          },
+          ]
+          }
+        headers: []
+        description: '200, success'
+      -
+        status: 404
+        content: '{"message": "Not Found!"}'
+        headers: []
+        description: '404, not found'
+      -
+        status: 401
+        content: '{"message": "Unauthenticated."}'
+        headers: []
+        description: '401, Unauthenticated'
+    responseFields: []

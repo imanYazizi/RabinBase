@@ -1,0 +1,77 @@
+name: 'Panel All Users'
+description: ''
+endpoints:
+  -
+    httpMethods:
+      - GET
+    uri: api/panel/users
+    metadata:
+      title: 'Show Users And Admins'
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    queryParameters: []
+    bodyParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          [
+          {
+          "id": 3,
+          "name": null,
+          "avatar": null,
+          "username": null,
+          "country_id": 1,
+          "phone": "09358548353",
+          "email": "nicolas.eric@example.org",
+          "reset_link": null,
+          "phone_code": null,
+          "email_code": "bdK8ZIhe3j",
+          "is_phone_verify": 1,
+          "is_email_verify": 0,
+          "is_admin": false
+          },
+          {
+          "id": 22,
+          "image": "",
+          "name": "ziz",
+          "country_id": 1,
+          "phone": "9358548353",
+          "role": "edit",
+          "is_admin": true
+          },
+          {
+          "id": 2,
+          "name": "zeinab",
+          "avatar": "files/1649859720-859727325.png",
+          "username": "zizi",
+          "country_id": 1,
+          "phone": "2",
+          "email": "hand.annamarie@example.org",
+          "reset_link": "CzUsyVDrqN",
+          "phone_code": "huJXcMd7rf",
+          "email_code": "EtmzkoYH2R",
+          "is_phone_verify": 0,
+          "is_email_verify": 0,
+          "is_admin": false
+          }
+          ]
+        headers: []
+        description: '200, success'
+      -
+        status: 401
+        content: '{"message": "Unauthenticated."}'
+        headers: []
+        description: '401, Unauthenticated'
+      -
+        status: 403
+        content: '{"message": "Not Allowed."}'
+        headers: []
+        description: '403, not allowed'
+    responseFields: []

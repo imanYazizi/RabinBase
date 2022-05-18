@@ -1,0 +1,104 @@
+name: 'Panel Country'
+description: |-
+
+  APIs for managing Countries
+endpoints:
+  -
+    httpMethods:
+      - GET
+    uri: api/all_country
+    metadata:
+      title: 'Show All Countries'
+      description: 'This endpoint shows all countries'
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    queryParameters: []
+    bodyParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          [
+          {
+          "id": 1,
+          "image": "http://127.0.0.1:8000/storage/gvjgvgv",
+          "code": "1",
+          "name": "canada"
+          },
+          {
+          "id": 2,
+          "image": "http://127.0.0.1:8000/storage/iji",
+          "code": "1",
+          "name": "USA"
+          }
+          ]
+        headers: []
+        description: '200, success'
+    responseFields: []
+  -
+    httpMethods:
+      - POST
+    uri: api/panel/country
+    metadata:
+      title: 'Create One Country'
+      description: 'This endpoint creates one Country'
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: multipart/form-data
+      Accept: application/json
+    urlParameters: []
+    queryParameters: []
+    bodyParameters:
+      image:
+        name: image
+        description: 'Must be an image.'
+        required: true
+        example: null
+        type: file
+        custom: []
+      name:
+        name: name
+        description: ''
+        required: true
+        example: illum
+        type: string
+        custom: []
+      code:
+        name: code
+        description: ''
+        required: true
+        example: 13
+        type: integer
+        custom: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+          "id": 3,
+          "image": "http://127.0.0.1:8000/storage/files/1649160294-516619164.png",
+          "code": "49",
+          "name": "germany"
+          }
+        headers: []
+        description: '200, success'
+      -
+        status: 422
+        content: |-
+          {
+          "message": "The image field is required.",
+          "errors": {
+          "image": [
+          "The image field is required."
+          ]
+          }
+          }
+        headers: []
+        description: '422, validation error'
+    responseFields: []

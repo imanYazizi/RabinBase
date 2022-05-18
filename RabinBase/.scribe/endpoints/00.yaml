@@ -1,0 +1,215 @@
+name: Addresses
+description: |-
+
+  APIs for user's addresses
+endpoints:
+  -
+    httpMethods:
+      - GET
+    uri: api/address
+    metadata:
+      title: 'Show All Addresses'
+      description: 'This endpoint shows all addresses of specific user'
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    queryParameters: []
+    bodyParameters: []
+    responses:
+      -
+        status: 200
+        content: '[{"id": 3,"client_id": 2,"title": "Home","address": "USA , LA","lat_lng": ""},{"id": 4,"client_id": 2,"title": "Office ","address": "Germany , Hamburg","lat_lng": ""}]'
+        headers: []
+        description: '200, success'
+      -
+        status: 401
+        content: '{"message": "Unauthenticated."}'
+        headers: []
+        description: '401, Unauthenticated'
+    responseFields: []
+  -
+    httpMethods:
+      - POST
+    uri: api/address
+    metadata:
+      title: 'Create Address'
+      description: 'This endpoint creates address of specific user'
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    queryParameters: []
+    bodyParameters:
+      address:
+        name: address
+        description: ''
+        required: true
+        example: eius
+        type: string
+        custom: []
+      title:
+        name: title
+        description: ''
+        required: false
+        example: null
+        type: string
+        custom: []
+      lat_lng:
+        name: lat_lng
+        description: ''
+        required: true
+        example: et
+        type: string
+        custom: []
+    responses:
+      -
+        status: 200
+        content: '{"id": 3,"client_id": 2,"title": "Home","address": "USA , LA","lat_lng": ""}'
+        headers: []
+        description: '200, success'
+      -
+        status: 401
+        content: '{"message": "Unauthenticated."}'
+        headers: []
+        description: '401, Unauthenticated'
+    responseFields: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/address/{id}'
+    metadata:
+      title: 'Show One Address'
+      description: |-
+        This endpoint shows one address
+        <aside class="success">Send address's id</aside>
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the address.'
+        required: true
+        example: 6
+        type: integer
+        custom: []
+    queryParameters: []
+    bodyParameters: []
+    responses:
+      -
+        status: 200
+        content: '{"id": 3,"client_id": 2,"title": "Home","address": "USA , LA","lat_lng": ""}'
+        headers: []
+        description: '200, success'
+      -
+        status: 401
+        content: '{"message": "Unauthenticated."}'
+        headers: []
+        description: '401, Unauthenticated'
+    responseFields: []
+  -
+    httpMethods:
+      - PUT
+      - PATCH
+    uri: 'api/address/{id}'
+    metadata:
+      title: 'Edit One Address'
+      description: |-
+        This endpoint edits one address
+        <aside class="success">please send all items </aside>
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the address.'
+        required: true
+        example: 8
+        type: integer
+        custom: []
+    queryParameters: []
+    bodyParameters:
+      address:
+        name: address
+        description: ''
+        required: false
+        example: null
+        type: string
+        custom: []
+      title:
+        name: title
+        description: ''
+        required: false
+        example: null
+        type: string
+        custom: []
+      lat_lng:
+        name: lat_lng
+        description: ''
+        required: false
+        example: null
+        type: string
+        custom: []
+    responses:
+      -
+        status: 200
+        content: '{"id": 3,"client_id": 2,"title": "Home","address": "USA , LA","lat_lng": ""}'
+        headers: []
+        description: '200, success'
+      -
+        status: 401
+        content: '{"message": "Unauthenticated."}'
+        headers: []
+        description: '401, Unauthenticated'
+    responseFields: []
+  -
+    httpMethods:
+      - DELETE
+    uri: 'api/address/{id}'
+    metadata:
+      title: 'Delete One Address'
+      description: |-
+        This endpoint edits one address
+        <aside class="success">Send me the address's id</aside>
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the address.'
+        required: true
+        example: 11
+        type: integer
+        custom: []
+    queryParameters: []
+    bodyParameters: []
+    responses:
+      -
+        status: 200
+        content: '{"message": "address deleted successfully"}'
+        headers: []
+        description: '200, success'
+      -
+        status: 401
+        content: '{"message": "Unauthenticated."}'
+        headers: []
+        description: '401, Unauthenticated'
+    responseFields: []
